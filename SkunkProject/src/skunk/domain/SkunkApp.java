@@ -1,9 +1,18 @@
 package skunk.domain;
 
-public class SkunkApp {
+import edu.princeton.cs.introcs.StdOut;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+public class SkunkApp
+{
+
+	public static void main(String[] args)
+	{
+		StdOut.println("Hello skunk players!");
+
+		Dice myDice = new Dice();
+		myDice.roll();
+
+		StdOut.println(myDice.getLastRoll());
 
 	}
 
