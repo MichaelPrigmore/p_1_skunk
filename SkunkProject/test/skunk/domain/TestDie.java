@@ -10,7 +10,7 @@ public class TestDie
 	@Test
 	public void test_die_constructor()
 	{
-		Die myDie = null;
+		Die myDie = new Die();
 		assertNotNull(myDie);
 	}
 
