@@ -15,7 +15,7 @@ public class TestDie
 	}
 
 	@Test
-	public void test_roll()
+	public void test_override_toString()
 	{
 		fail();
 	}
