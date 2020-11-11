@@ -14,4 +14,10 @@ public class TestDie
 		assertNotNull(myDie);
 	}
 
+	@Test
+	public void test_roll()
+	{
+		fail();
+	}
+
 }
