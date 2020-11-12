@@ -23,4 +23,17 @@ class Die_Testable_Tests
 		assertEquals(myDie.toString().charAt(0), 'D');
 	}
 
+	@Test
+	public void test_500_fair_roll_values()
+	{
+		Die_Testable myDie = new Die_Testable();
+
+		for (int i = 0; i < 500; i++)
+		{
+			myDie.roll();
+			assertTrue(myDie.getLastRoll() > 0 && myDie.getLastRoll() < 6);
+		}
+
+	}
+
 }
