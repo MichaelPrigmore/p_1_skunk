@@ -34,15 +34,15 @@ class Dice_Modular_Tests
 		}
 	}
 
-	// @Test
-	// public void test_unfair_roll_value()
-	// {
-	// Die_Modular myDie = new Die_Modular();
-	// myDie.setIsFairDie(false);
-	// myDie.setLastRoll(1);
-	// myDie.roll();
-	// assertEquals(myDie.getLastRoll(), 2);
-	//
-	// }
+	@Test
+	public void test_unfair_roll_value()
+	{
+		Dice_Modular myDice = new Dice_Modular();
+		myDice.setIsFairDice(false);
+		myDice.setLastRoll(1, 1);
+		myDice.roll();
+		assertEquals(myDice.getLastRoll(), 4);
+
+	}
 
 }
