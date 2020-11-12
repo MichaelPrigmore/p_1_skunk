@@ -23,16 +23,15 @@ class Dice_Modular_Tests
 	}
 
 	@Test
-	public void test_500_fair_roll_values()
+	public void test_500_fair_dice_rolls()
 	{
-		fail();
-		// Die_Modular myDie = new Die_Modular();
-		//
-		// for (int i = 0; i < 500; i++)
-		// {
-		// myDie.roll();
-		// assertTrue(myDie.getLastRoll() > 0 && myDie.getLastRoll() < 7);
-		// }
+		Dice_Modular myDice = new Dice_Modular();
+
+		for (int i = 0; i < 500; i++)
+		{
+			myDice.roll();
+			assertTrue(myDice.getLastRoll() > 0 && myDice.getLastRoll() < 13);
+		}
 	}
 
 	// @Test
