@@ -11,17 +11,17 @@ class Dice_Modular_Tests
 	@Test
 	public void test_dice_modular_constructor()
 	{
-		Die_Modular myDie = new Die_Modular();
-		assertNotNull(myDie);
+		Dice_Modular myDice = new Dice_Modular();
+		assertNotNull(myDice);
 	}
 
-	// @Test
-	// public void test_override_toString_die_testable()
-	// {
-	// Die_Modular myDie = new Die_Modular();
-	// assertEquals(myDie.toString().charAt(0), 'D');
-	// }
-	//
+	@Test
+	public void test_override_toString_die_modular()
+	{
+		Dice_Modular myDice = new Dice_Modular();
+		assertEquals(myDice.toString().charAt(0), 'D');
+	}
+
 	// @Test
 	// public void test_500_fair_roll_values()
 	// {
