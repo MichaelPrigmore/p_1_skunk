@@ -57,7 +57,7 @@ public class Dice_Modular
 
 	public String toString()
 	{
-		return "dice with last roll: " + getLastRoll() + " => " + die1.getLastRoll() + " + " + die2.getLastRoll();
+		return "Dice with last roll: " + getLastRoll() + " => " + die1.getLastRoll() + " + " + die2.getLastRoll();
 	}
 
 	// static methods can go anywhere - but at end is one convention
