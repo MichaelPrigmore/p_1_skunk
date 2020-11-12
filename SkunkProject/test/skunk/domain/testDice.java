@@ -10,11 +10,10 @@ class testDice
 {
 
 	@Test
-	public void test_die_constructor()
+	public void test_dice_constructor()
 	{
-		fail();
-		// Die myDie = new Die();
-		// assertNotNull(myDie);
+		Dice myDice = new Dice();
+		assertNotNull(myDice);
 	}
 
 	// @Test
