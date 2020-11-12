@@ -33,6 +33,15 @@ class Die_Testable_Tests
 			myDie.roll();
 			assertTrue(myDie.getLastRoll() > 0 && myDie.getLastRoll() < 7);
 		}
+	}
+
+	@Test
+	public void test_unfair_roll_value()
+	{
+		Die_Testable myDie = new Die_Testable();
+		myDie.setLastRoll(1);
+		myDie.roll();
+		assertEquals(myDie.getLastRoll(), 2);
 
 	}
 
