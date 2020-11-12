@@ -32,7 +32,7 @@ public class Die_Testable
 		}
 		else
 		{
-			this.lastRoll = this.lastRoll++;
+			this.lastRoll++;
 		}
 	}
 
