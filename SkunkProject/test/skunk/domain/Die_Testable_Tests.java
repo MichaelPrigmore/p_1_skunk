@@ -19,9 +19,8 @@ class Die_Testable_Tests
 	@Test
 	public void test_override_toString_die_testable()
 	{
-		fail();
-		// Die_Testable myDie = new Die_Testable();
-		// assertEquals(myDie.toString().charAt(0), 'D');
+		Die_Testable myDie = new Die_Testable();
+		assertEquals(myDie.toString().charAt(0), 'D');
 	}
 
 }
