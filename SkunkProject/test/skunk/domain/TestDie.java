@@ -15,7 +15,7 @@ public class TestDie
 	}
 
 	@Test
-	public void test_override_toString()
+	public void test_override_toString_die()
 	{
 		Die myDie = new Die();
 		assertEquals(myDie.toString().charAt(0), 'D');

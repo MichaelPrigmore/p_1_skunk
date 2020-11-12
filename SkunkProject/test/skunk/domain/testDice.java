@@ -16,11 +16,11 @@ class testDice
 		assertNotNull(myDice);
 	}
 
-	// @Test
-	// public void test_override_toString()
-	// {
-	// Die myDie = new Die();
-	// assertEquals(myDie.toString().charAt(0), 'D');
-	// }
+	@Test
+	public void test_override_toString_dice()
+	{
+		Dice myDice = new Dice();
+		assertEquals(myDice.toString().charAt(0), 'd');
+	}
 
 }
