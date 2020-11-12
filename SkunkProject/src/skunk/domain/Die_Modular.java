@@ -1,11 +1,11 @@
 package skunk.domain;
 
-public class Die_Testable
+public class Die_Modular
 {
 	private int lastRoll;
 	private boolean isFairDie;
 
-	public Die_Testable()
+	public Die_Modular()
 	{
 		this.roll();
 		this.isFairDie = true;

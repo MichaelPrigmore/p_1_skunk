@@ -6,27 +6,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class Die_Testable_Tests
+class Die_Modular_Tests
 {
 
 	@Test
 	public void test_die_testable_constructor()
 	{
-		Die_Testable myDie = new Die_Testable();
+		Die_Modular myDie = new Die_Modular();
 		assertNotNull(myDie);
 	}
 
 	@Test
 	public void test_override_toString_die_testable()
 	{
-		Die_Testable myDie = new Die_Testable();
+		Die_Modular myDie = new Die_Modular();
 		assertEquals(myDie.toString().charAt(0), 'D');
 	}
 
 	@Test
 	public void test_500_fair_roll_values()
 	{
-		Die_Testable myDie = new Die_Testable();
+		Die_Modular myDie = new Die_Modular();
 
 		for (int i = 0; i < 500; i++)
 		{
@@ -38,7 +38,7 @@ class Die_Testable_Tests
 	@Test
 	public void test_unfair_roll_value()
 	{
-		Die_Testable myDie = new Die_Testable();
+		Die_Modular myDie = new Die_Modular();
 		myDie.setIsFairDie(false);
 		myDie.setLastRoll(1);
 		myDie.roll();
