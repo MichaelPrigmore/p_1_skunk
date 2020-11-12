@@ -32,7 +32,7 @@ public class Die_Testable
 		}
 		else
 		{
-
+			this.lastRoll = this.lastRoll++;
 		}
 	}
 
@@ -40,5 +40,17 @@ public class Die_Testable
 	public String toString() // this OVERRIDES the default Object.toString()
 	{
 		return "Die: " + this.getLastRoll();
+	}
+
+	public void setIsFairDie(boolean isFairDie)
+	{
+		this.isFairDie = isFairDie;
+
+	}
+
+	public boolean getIsFairDie()
+	{
+		return this.isFairDie;
+
 	}
 }
