@@ -39,6 +39,7 @@ class Die_Testable_Tests
 	public void test_unfair_roll_value()
 	{
 		Die_Testable myDie = new Die_Testable();
+		myDie.setIsFairDie(false);
 		myDie.setLastRoll(1);
 		myDie.roll();
 		assertEquals(myDie.getLastRoll(), 2);
