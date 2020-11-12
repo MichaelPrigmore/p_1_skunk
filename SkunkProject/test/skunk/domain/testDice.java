@@ -20,7 +20,7 @@ class testDice
 	public void test_override_toString_dice()
 	{
 		Dice myDice = new Dice();
-		assertEquals(myDice.toString().charAt(0), 'd');
+		assertEquals(myDice.toString().charAt(0), 'D');
 	}
 
 }
