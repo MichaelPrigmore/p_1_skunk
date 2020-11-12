@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.Test;
 
-class testDice
+class Dice_Tests
 {
 
 	@Test

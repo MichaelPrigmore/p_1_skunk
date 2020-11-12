@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestDie
+public class Die_Tests
 {
 
 	@Test
