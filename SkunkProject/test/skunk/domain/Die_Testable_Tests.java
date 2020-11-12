@@ -12,9 +12,8 @@ class Die_Testable_Tests
 	@Test
 	public void test_die_testable_constructor()
 	{
-		fail();
-		// Die myDie = new Die();
-		// assertNotNull(myDie);
+		Die_Testable myDie = new Die_Testable();
+		assertNotNull(myDie);
 	}
 	//
 	// @Test
