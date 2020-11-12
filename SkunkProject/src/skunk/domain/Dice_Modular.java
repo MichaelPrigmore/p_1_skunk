@@ -10,7 +10,6 @@ public class Dice_Modular
 	private int lastRoll;
 	private Die_Modular die1;
 	private Die_Modular die2;
-	private boolean isFairDice;
 
 	// Constructors (object initializers) also can be declared anywhere
 	// Convention: after instance fields/variables
@@ -23,7 +22,6 @@ public class Dice_Modular
 		this.die1 = new Die_Modular();
 		this.die2 = new Die_Modular();
 		this.roll();
-		this.isFairDice = true;
 	}
 
 	public Dice_Modular(Die_Modular die1, Die_Modular die2) // overloaded
@@ -31,7 +29,6 @@ public class Dice_Modular
 	{
 		this.die1 = die1;
 		this.die2 = die2;
-		this.isFairDice = true;
 	}
 
 	public void setIsFairDice(boolean isFairDice)
