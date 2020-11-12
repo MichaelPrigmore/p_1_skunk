@@ -52,6 +52,10 @@ class Dice_Modular_Tests
 		myDice.roll();
 		assertEquals(myDice.getLastRoll(), 10);
 
+		myDice.setLastRoll(5, 6);
+		myDice.roll();
+		assertEquals(myDice.getLastRoll(), 7);
+
 	}
 
 }
