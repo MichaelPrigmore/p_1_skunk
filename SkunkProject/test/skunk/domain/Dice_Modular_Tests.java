@@ -39,9 +39,18 @@ class Dice_Modular_Tests
 	{
 		Dice_Modular myDice = new Dice_Modular();
 		myDice.setIsFairDice(false);
+
 		myDice.setLastRoll(1, 1);
 		myDice.roll();
 		assertEquals(myDice.getLastRoll(), 4);
+
+		myDice.setLastRoll(2, 4);
+		myDice.roll();
+		assertEquals(myDice.getLastRoll(), 8);
+
+		myDice.setLastRoll(3, 5);
+		myDice.roll();
+		assertEquals(myDice.getLastRoll(), 10);
 
 	}
 

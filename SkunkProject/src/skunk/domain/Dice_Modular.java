@@ -8,8 +8,9 @@ public class Dice_Modular
 	// Convention: put at top
 
 	private int lastRoll;
-	private Die die1;
-	private Die die2;
+	private Die_Modular die1;
+	private Die_Modular die2;
+	private boolean isFairDice;
 
 	// Constructors (object initializers) also can be declared anywhere
 	// Convention: after instance fields/variables
@@ -19,15 +20,25 @@ public class Dice_Modular
 		// initialize instance variables die1 and die2 by
 		// creating a new instance of each
 
-		this.die1 = new Die();
-		this.die2 = new Die();
+		this.die1 = new Die_Modular();
+		this.die2 = new Die_Modular();
 		this.roll();
+		this.isFairDice = true;
 	}
 
-	public Dice_Modular(Die die1, Die die2) // overloaded constructor
+	public Dice_Modular(Die_Modular die1, Die_Modular die2) // overloaded
+															// constructor
 	{
 		this.die1 = die1;
 		this.die2 = die2;
+		this.isFairDice = true;
+	}
+
+	public void setIsFairDice(boolean isFairDice)
+	{
+		this.die1.setIsFairDie(isFairDice);
+		this.die2.setIsFairDie(isFairDice);
+
 	}
 
 	// Instance methods can also be declared anywhere in body of class
@@ -36,6 +47,14 @@ public class Dice_Modular
 	public int getLastRoll()
 	{
 		return this.lastRoll;
+
+	}
+
+	public void setLastRoll(int die1Roll, int die2Roll)
+	{
+		this.die1.setLastRoll(die1Roll);
+		this.die2.setLastRoll(die2Roll);
+
 	}
 
 	public void roll()
@@ -43,8 +62,8 @@ public class Dice_Modular
 		// Roll each of die1, die2, sum their last rolls,
 		// then set Dice.lastRoll to this value
 
-		die1.roll();
-		die2.roll();
+		this.die1.roll();
+		this.die2.roll();
 		this.lastRoll = die1.getLastRoll() + die2.getLastRoll();
 
 	}
@@ -83,4 +102,5 @@ public class Dice_Modular
 		StdOut.println("Actual count: " + doubleSkunkCount);
 		StdOut.println("Expected count: " + (NUM_TRIALS / 36.0));
 	}
+
 }
