@@ -15,12 +15,13 @@ class Die_Testable_Tests
 		Die_Testable myDie = new Die_Testable();
 		assertNotNull(myDie);
 	}
-	//
-	// @Test
-	// public void test_override_toString_die()
-	// {
-	// Die myDie = new Die();
-	// assertEquals(myDie.toString().charAt(0), 'D');
-	// }
+
+	@Test
+	public void test_override_toString_die_testable()
+	{
+		fail();
+		// Die_Testable myDie = new Die_Testable();
+		// assertEquals(myDie.toString().charAt(0), 'D');
+	}
 
 }
