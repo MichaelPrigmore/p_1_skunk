@@ -35,7 +35,7 @@ class Dice_Modular_Tests
 	}
 
 	@Test
-	public void unfair_dice_1_and_1_values_then_roll()
+	public void roll_unfair_dice()
 	{
 		Dice_Modular myDice = new Dice_Modular();
 		myDice.setIsFairDice(false);
