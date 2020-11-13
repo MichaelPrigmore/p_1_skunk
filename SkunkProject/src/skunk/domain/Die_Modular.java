@@ -32,7 +32,14 @@ public class Die_Modular
 		}
 		else
 		{
-			this.lastRoll++;
+			if (this.lastRoll != 6)
+			{
+				this.lastRoll++;
+			}
+			else
+			{
+				this.lastRoll = 1;
+			}
 		}
 	}
 
