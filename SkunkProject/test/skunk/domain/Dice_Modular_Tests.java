@@ -9,10 +9,16 @@ class Dice_Modular_Tests
 {
 
 	@Test
-	public void test_dice_modular_constructor()
+	public void test_dice_modular_first_constructor()
 	{
 		Dice_Modular myDice = new Dice_Modular();
 		assertNotNull(myDice);
+	}
+
+	@Test
+	public void test_dice_modular_second_constructor()
+	{
+		fail();
 	}
 
 	@Test
