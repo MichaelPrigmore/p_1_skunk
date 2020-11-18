@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class Die_Modular_Tests
@@ -46,9 +47,15 @@ class Die_Modular_Tests
 
 	}
 
-	@Test(expected = InvalidDieValueException)
+	@Test
 	public void test_out_of_bounds_die_set()
 	{
+		Die_Modular myDie = new Die_Modular();
+
+		Assertions.assertThrows(InvalidDieValueException.class, () ->
+		{
+			myDie.setLastRoll(0);
+		});
 
 	}
 
