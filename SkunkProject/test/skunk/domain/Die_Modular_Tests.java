@@ -52,6 +52,8 @@ class Die_Modular_Tests
 		Die_Modular myDie = new Die_Modular();
 
 		assertThrows(InvalidDieValueException.class, () -> myDie.setLastRoll(0));
+		assertThrows(InvalidDieValueException.class, () -> myDie.setLastRoll(-5));
+		assertThrows(InvalidDieValueException.class, () -> myDie.setLastRoll(8));
 
 	}
 
