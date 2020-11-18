@@ -57,7 +57,7 @@ class Die_Modular_Tests
 		Die_Modular myDie = new Die_Modular();
 		myDie.setIsFairDie(false);
 
-		fail();
+		assertFalse(myDie.getIsFairDie());
 
 	}
 
