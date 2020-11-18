@@ -18,7 +18,10 @@ class Dice_Modular_Tests
 	@Test
 	public void test_dice_modular_second_constructor()
 	{
-		fail();
+		Die_Modular die1 = new Die_Modular();
+		Die_Modular die2 = new Die_Modular();
+		Dice_Modular myDice = new Dice_Modular(die1, die2);
+		assertNotNull(myDice);
 	}
 
 	@Test
