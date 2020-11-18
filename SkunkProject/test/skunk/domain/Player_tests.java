@@ -15,4 +15,11 @@ class Player_tests
 		assertNotNull(player);
 	}
 
+	@Test
+	public void test_player_second_constructor()
+	{
+		Player player = new Player("Michael");
+		assertNotNull(player);
+	}
+
 }
