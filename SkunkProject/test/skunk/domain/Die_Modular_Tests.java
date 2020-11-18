@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class Die_Modular_Tests
@@ -37,7 +36,7 @@ class Die_Modular_Tests
 	}
 
 	@Test
-	public void test_unfair_roll_value()
+	public void test_unfair_roll_value() throws InvalidDieValueException
 	{
 		Die_Modular myDie = new Die_Modular();
 		myDie.setIsFairDie(false);
@@ -52,10 +51,7 @@ class Die_Modular_Tests
 	{
 		Die_Modular myDie = new Die_Modular();
 
-		Assertions.assertThrows(InvalidDieValueException.class, () ->
-		{
-			myDie.setLastRoll(0);
-		});
+		assertThrows(InvalidDieValueException.class, () -> myDie.setLastRoll(0));
 
 	}
 

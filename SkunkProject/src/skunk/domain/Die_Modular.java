@@ -1,5 +1,7 @@
 package skunk.domain;
 
+import edu.princeton.cs.introcs.StdOut;
+
 public class Die_Modular
 {
 	private int lastRoll;
@@ -17,10 +19,21 @@ public class Die_Modular
 		return this.lastRoll;
 	}
 
-	public void setLastRoll(int lastRoll) // setter method
+	public void setLastRoll(int lastRoll) throws InvalidDieValueException// setter
+																			// method
 	{
 
-		this.lastRoll = lastRoll;
+		if (lastRoll < 1)
+		{
+			InvalidDieValueException e = new InvalidDieValueException();
+			StdOut.println(e.getMessage());
+			throw e;
+		}
+		else
+		{
+			this.lastRoll = lastRoll;
+		}
+
 	}
 
 	public void roll() // note how this changes Die's state, but doesn't return

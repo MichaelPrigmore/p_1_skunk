@@ -35,7 +35,7 @@ class Dice_Modular_Tests
 	}
 
 	@Test
-	public void roll_unfair_dice_inputs_from_1_to_6()
+	public void roll_unfair_dice_inputs_from_1_to_6() throws InvalidDieValueException
 	{
 		Dice_Modular myDice = new Dice_Modular();
 		myDice.setIsFairDice(false);

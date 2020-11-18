@@ -47,7 +47,7 @@ public class Dice_Modular
 
 	}
 
-	public void setLastRoll(int die1Roll, int die2Roll)
+	public void setLastRoll(int die1Roll, int die2Roll) throws InvalidDieValueException
 	{
 		this.die1.setLastRoll(die1Roll);
 		this.die2.setLastRoll(die2Roll);
