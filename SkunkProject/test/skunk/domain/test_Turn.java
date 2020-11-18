@@ -8,9 +8,13 @@ class test_Turn
 {
 
 	@Test
-	void test_players_turn()
+	void test_set_players_turn()
 	{
-		fail("Not yet implemented");
+		Player player = new Player();
+		Turn turn = new Turn();
+		turn.setPlayer(player);
+
+		assertEquals(player, turn.getPlayer());
 	}
 
 }
