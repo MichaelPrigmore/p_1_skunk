@@ -1,7 +1,5 @@
 package skunk.domain;
 
-import edu.princeton.cs.introcs.StdOut;
-
 public class Dice_Modular
 {
 	// Instance fields (variables) may be declared anywhere in class body

@@ -8,9 +8,18 @@ class Dice_Tests
 {
 
 	@Test
-	public void test_dice_constructor()
+	public void test_dice_first_constructor()
 	{
 		Dice myDice = new Dice();
+		assertNotNull(myDice);
+	}
+
+	@Test
+	public void test_dice_modular_second_constructor()
+	{
+		Die die1 = new Die();
+		Die die2 = new Die();
+		Dice myDice = new Dice(die1, die2);
 		assertNotNull(myDice);
 	}
 
