@@ -23,7 +23,7 @@ public class Die_Modular
 																			// method
 	{
 
-		if (lastRoll < 1)
+		if (lastRoll < 1 || lastRoll > 6)
 		{
 			InvalidDieValueException e = new InvalidDieValueException();
 			StdOut.println(e.getMessage());

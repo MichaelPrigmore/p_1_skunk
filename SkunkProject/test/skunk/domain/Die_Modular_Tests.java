@@ -40,9 +40,24 @@ class Die_Modular_Tests
 	{
 		Die_Modular myDie = new Die_Modular();
 		myDie.setIsFairDie(false);
+
 		myDie.setLastRoll(1);
 		myDie.roll();
 		assertEquals(myDie.getLastRoll(), 2);
+
+		myDie.setLastRoll(6);
+		myDie.roll();
+		assertEquals(myDie.getLastRoll(), 1);
+
+	}
+
+	@Test
+	public void test_getIsFairDie() throws InvalidDieValueException
+	{
+		Die_Modular myDie = new Die_Modular();
+		myDie.setIsFairDie(false);
+
+		fail();
 
 	}
 
