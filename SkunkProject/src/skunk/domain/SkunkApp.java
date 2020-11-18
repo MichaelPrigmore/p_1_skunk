@@ -9,6 +9,13 @@ public class SkunkApp
 	{
 		StdOut.println("Hello skunk players!");
 
+		StdOut.println("Simulate 1 turn for one player");
+
+		Player player1 = new Player("Goku");
+
+		Turn turn = new Turn();
+		turn.setPlayer(player1);
+
 		Dice myDice = new Dice();
 		myDice.roll();
 

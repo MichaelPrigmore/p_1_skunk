@@ -17,4 +17,12 @@ class test_Turn
 		assertEquals(player, turn.getPlayer());
 	}
 
+	@Test
+	void test_turn_current_score()
+	{
+		Turn turn = new Turn();
+
+		assertEquals(0, turn.get_Current_Turn_Score());
+	}
+
 }
