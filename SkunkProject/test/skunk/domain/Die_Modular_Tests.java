@@ -46,4 +46,10 @@ class Die_Modular_Tests
 
 	}
 
+	@Test(expected = InvalidDieValue)
+	public void test_out_of_bounds_die_set()
+	{
+
+	}
+
 }

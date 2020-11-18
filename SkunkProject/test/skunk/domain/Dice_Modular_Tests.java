@@ -35,7 +35,7 @@ class Dice_Modular_Tests
 	}
 
 	@Test
-	public void roll_unfair_dice()
+	public void roll_unfair_dice_inputs_from_1_to_6()
 	{
 		Dice_Modular myDice = new Dice_Modular();
 		myDice.setIsFairDice(false);
@@ -61,5 +61,18 @@ class Dice_Modular_Tests
 		assertEquals(myDice.getLastRoll(), 2);
 
 	}
+
+	// @Test
+	// public void roll_unfair_dice_inputs_out_of_bounds()
+	// {
+	// Dice_Modular myDice = new Dice_Modular();
+	// myDice.setIsFairDice(false);
+	//
+	// myDice.setLastRoll(-1, 1);
+	// myDice.roll();
+	// assertEquals(myDice.getLastRoll(), 4);
+	//
+	//
+	// }
 
 }
