@@ -11,7 +11,8 @@ class Player_tests
 	@Test
 	public void test_player_first_constructor()
 	{
-		fail();
+		Player player = new Player();
+		assertNotNull(player);
 	}
 
 }
