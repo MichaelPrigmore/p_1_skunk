@@ -1,5 +1,7 @@
 package skunk.domain;
 
+import java.util.function.Supplier;
+
 public class Player
 {
 	private int score;
@@ -18,5 +20,10 @@ public class Player
 		this.score = 0;
 		this.chips = 50;
 		this.name = name;
+	}
+
+	public String get_Name()
+	{
+		return name;
 	}
 }
