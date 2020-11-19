@@ -22,4 +22,11 @@ class Player_tests
 		assertNotNull(player);
 	}
 
+	@Test
+	public void test_get_Name()
+	{
+		Player player = new Player("Michael");
+		assertTrue("Michael", player.get_Name());
+	}
+
 }
