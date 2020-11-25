@@ -26,7 +26,7 @@ class Player_tests
 	public void test_get_Name()
 	{
 		Player player = new Player("Michael");
-		assertEquals("Michael", player.get_Name());
+		assertEquals("Michael", player.getName());
 	}
 
 }

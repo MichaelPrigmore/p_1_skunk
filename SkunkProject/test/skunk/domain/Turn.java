@@ -17,7 +17,7 @@ public class Turn
 
 	}
 
-	public Object getPlayer()
+	public Player getPlayer()
 	{
 		return this.player;
 	}
@@ -25,6 +25,11 @@ public class Turn
 	public int get_Current_Turn_Score()
 	{
 		return this.Current_Turn_Score;
+	}
+
+	public void set_Current_Turn_Score(int Current_Turn_Score)
+	{
+		this.Current_Turn_Score = Current_Turn_Score;
 	}
 
 }

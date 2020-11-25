@@ -22,7 +22,27 @@ public class Player
 		this.name = name;
 	}
 
-	public String get_Name()
+	public int getScore()
+	{
+		return this.score;
+	}
+
+	public void setScore(int score)
+	{
+		this.score = score;
+	}
+
+	public int getChips()
+	{
+		return this.chips;
+	}
+
+	public void setChips(int chips)
+	{
+		this.chips = chips;
+	}
+
+	public String getName()
 	{
 		return name;
 	}
