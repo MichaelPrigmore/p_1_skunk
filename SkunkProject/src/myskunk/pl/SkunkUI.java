@@ -3,7 +3,7 @@ package myskunk.pl;
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
 import skunk.dl.Dice;
-import skunk.domain.Turn;
+import skunk.dl.Turn;
 
 public class SkunkUI
 {

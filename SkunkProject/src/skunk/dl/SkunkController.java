@@ -1,7 +1,6 @@
 package skunk.dl;
 
 import myskunk.pl.SkunkUI;
-import skunk.domain.Turn;
 
 public class SkunkController
 {
@@ -11,27 +10,33 @@ public class SkunkController
 	int numberOfPlayers;
 	Player[] playerArray;
 
+	String decision = "";
 	int chips;
 	int score;
+	int kitty = 0;
+	Dice myDice = new Dice();
+	Turn turn = new Turn();
+	SkunkUI UI = new SkunkUI();
+	RollState rollState;
+
+	public enum RollState
+	{
+		NOPENALTY, SINGLESKUNK, DOUBLESKUNK, SKUNKDEUCE
+	}
 
 	public SkunkController()
 	{
-		SkunkUI UI = new SkunkUI();
 
 		this.playerArray = new Player[1];
 
 		Player player1 = new Player("Goku");
 
-		Dice myDice = new Dice();
-
-		int kitty = 0;
-
-		Turn turn = new Turn();
-
 		turn.setPlayer(player1);
 
-		String decision = "";
+	}
 
+	public void playGame()
+	{
 		decision = UI.startTurn(turn, kitty);
 
 		while (decision.equalsIgnoreCase("y"))
@@ -41,95 +46,25 @@ public class SkunkController
 
 			UI.rollMessage(turn, myDice);
 
-			// Conditions
+			penaltiesLogic(turn, myDice, kitty);
 
-			// Skunk-Deuce Penalty
-
-			if ((myDice.getDie1().getLastRoll() == 1 && myDice.getDie2().getLastRoll() == 2)
-					|| (myDice.getDie1().getLastRoll() == 2 && myDice.getDie2().getLastRoll() == 1))
+			if (rollState != RollState.NOPENALTY)
 			{
-
-				if ((turn.getPlayer().getChips() - SKUNK_DUECE_CHIP_PENALTY) >= 0)
+				switch (rollState)
 				{
-					chips = turn.getPlayer().getChips() - SKUNK_DUECE_CHIP_PENALTY;
+				case SINGLESKUNK:
+					UI.rolledSingleSkunk();
+					break;
 
-					turn.getPlayer().setChips(chips);
+				case DOUBLESKUNK:
+					UI.rolledDoubleSkunk();
+					;
+					break;
 
-					kitty += SKUNK_DUECE_CHIP_PENALTY;
+				case SKUNKDEUCE:
+					UI.rolledDeuce();
+					break;
 				}
-				else
-				{
-					kitty += turn.getPlayer().getChips();
-					turn.getPlayer().setChips(0);
-				}
-
-				turn.set_Current_Turn_Score(0);
-
-				UI.rolledDeuce();
-
-				UI.turnSummary(turn, kitty);
-
-				UI.totalScore(turn);
-
-				UI.endOfTurn();
-
-				break;
-
-			}
-
-			// Single Skunk Penalty
-
-			else if ((myDice.getDie1().getLastRoll() == 1 && myDice.getDie2().getLastRoll() != 1)
-					|| (myDice.getDie1().getLastRoll() != 1 && myDice.getDie2().getLastRoll() == 1))
-			{
-
-				if ((turn.getPlayer().getChips() - SINGLE_SKUNK_CHIP_PENALTY) >= 0)
-				{
-					chips = turn.getPlayer().getChips() - SINGLE_SKUNK_CHIP_PENALTY;
-
-					turn.getPlayer().setChips(chips);
-
-					kitty += SINGLE_SKUNK_CHIP_PENALTY;
-				}
-
-				turn.set_Current_Turn_Score(0);
-
-				UI.rolledSingleSkunk();
-
-				UI.turnSummary(turn, kitty);
-
-				UI.totalScore(turn);
-
-				UI.endOfTurn();
-
-				break;
-
-			}
-
-			// Double Skunk Penalty
-
-			else if ((myDice.getDie1().getLastRoll() == 1 && myDice.getDie2().getLastRoll() == 1))
-			{
-
-				if ((turn.getPlayer().getChips() - DOUBLE_SKUNK_CHIP_PENALTY) >= 0)
-				{
-					chips = turn.getPlayer().getChips() - DOUBLE_SKUNK_CHIP_PENALTY;
-
-					turn.getPlayer().setChips(chips);
-
-					kitty += DOUBLE_SKUNK_CHIP_PENALTY;
-				}
-				else
-				{
-					kitty += turn.getPlayer().getChips();
-					turn.getPlayer().setChips(0);
-				}
-
-				turn.set_Current_Turn_Score(0);
-
-				turn.getPlayer().setScore(0);
-
-				UI.rolledDoubleSkunk();
 
 				UI.turnSummary(turn, kitty);
 
@@ -144,6 +79,7 @@ public class SkunkController
 			// No penalties
 
 			else
+
 			{
 
 				turn.set_Current_Turn_Score(turn.get_Current_Turn_Score() + myDice.getLastRoll());
@@ -164,6 +100,79 @@ public class SkunkController
 			}
 
 		}
+	}
+
+	public void penaltiesLogic(Turn turn, Dice myDice, int kitty)
+	{
+
+		// Skunk-Deuce Penalty
+
+		if ((myDice.getDie1().getLastRoll() == 1 && myDice.getDie2().getLastRoll() == 2)
+				|| (myDice.getDie1().getLastRoll() == 2 && myDice.getDie2().getLastRoll() == 1))
+		{
+
+			if ((turn.getPlayer().getChips() - SKUNK_DUECE_CHIP_PENALTY) >= 0)
+			{
+				chips = turn.getPlayer().getChips() - SKUNK_DUECE_CHIP_PENALTY;
+
+				turn.getPlayer().setChips(chips);
+
+				kitty += SKUNK_DUECE_CHIP_PENALTY;
+			}
+			else
+			{
+				kitty += turn.getPlayer().getChips();
+				turn.getPlayer().setChips(0);
+			}
+
+			turn.set_Current_Turn_Score(0);
+
+		}
+
+		// Single Skunk Penalty
+
+		else if ((myDice.getDie1().getLastRoll() == 1 && myDice.getDie2().getLastRoll() != 1)
+				|| (myDice.getDie1().getLastRoll() != 1 && myDice.getDie2().getLastRoll() == 1))
+		{
+
+			if ((turn.getPlayer().getChips() - SINGLE_SKUNK_CHIP_PENALTY) >= 0)
+			{
+				chips = turn.getPlayer().getChips() - SINGLE_SKUNK_CHIP_PENALTY;
+
+				turn.getPlayer().setChips(chips);
+
+				kitty += SINGLE_SKUNK_CHIP_PENALTY;
+			}
+
+			turn.set_Current_Turn_Score(0);
+
+		}
+
+		// Double Skunk Penalty
+
+		else if ((myDice.getDie1().getLastRoll() == 1 && myDice.getDie2().getLastRoll() == 1))
+		{
+
+			if ((turn.getPlayer().getChips() - DOUBLE_SKUNK_CHIP_PENALTY) >= 0)
+			{
+				chips = turn.getPlayer().getChips() - DOUBLE_SKUNK_CHIP_PENALTY;
+
+				turn.getPlayer().setChips(chips);
+
+				kitty += DOUBLE_SKUNK_CHIP_PENALTY;
+			}
+			else
+			{
+				kitty += turn.getPlayer().getChips();
+				turn.getPlayer().setChips(0);
+			}
+
+			turn.set_Current_Turn_Score(0);
+
+			turn.getPlayer().setScore(0);
+
+		}
+
 	}
 
 }

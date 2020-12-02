@@ -1,6 +1,4 @@
-package skunk.domain;
-
-import skunk.dl.Player;
+package skunk.dl;
 
 public class Turn
 {
