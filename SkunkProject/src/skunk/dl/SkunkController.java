@@ -31,7 +31,7 @@ public class SkunkController
 
 		Player player1 = new Player("Goku");
 
-		turn.setPlayer(player1);
+		turn.setPlayer(player1); // simulating just one turn for now
 
 	}
 
@@ -46,7 +46,7 @@ public class SkunkController
 
 			UI.rollMessage(turn, myDice);
 
-			penaltiesLogic(turn, myDice, kitty);
+			scoreCalculator(turn, myDice, kitty);
 
 			if (rollState != RollState.NOPENALTY)
 			{
@@ -82,8 +82,6 @@ public class SkunkController
 
 			{
 
-				turn.set_Current_Turn_Score(turn.get_Current_Turn_Score() + myDice.getLastRoll());
-
 				UI.turnSummary(turn, kitty);
 
 				decision = UI.rollAgainChoice(turn);
@@ -102,7 +100,7 @@ public class SkunkController
 		}
 	}
 
-	public void penaltiesLogic(Turn turn, Dice myDice, int kitty)
+	public void scoreCalculator(Turn turn, Dice myDice, int kitty)
 	{
 
 		// Skunk-Deuce Penalty
@@ -126,6 +124,7 @@ public class SkunkController
 			}
 
 			turn.set_Current_Turn_Score(0);
+			rollState = RollState.SKUNKDEUCE;
 
 		}
 
@@ -145,6 +144,7 @@ public class SkunkController
 			}
 
 			turn.set_Current_Turn_Score(0);
+			rollState = RollState.SINGLESKUNK;
 
 		}
 
@@ -168,9 +168,17 @@ public class SkunkController
 			}
 
 			turn.set_Current_Turn_Score(0);
-
 			turn.getPlayer().setScore(0);
+			rollState = RollState.DOUBLESKUNK;
 
+		}
+
+		else
+
+		{
+
+			turn.set_Current_Turn_Score(turn.get_Current_Turn_Score() + myDice.getLastRoll());
+			rollState = RollState.NOPENALTY;
 		}
 
 	}
