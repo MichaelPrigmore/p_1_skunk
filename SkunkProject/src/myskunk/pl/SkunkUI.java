@@ -1,11 +1,12 @@
-package skunk.domain;
+package myskunk.pl;
 
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
+import skunk.domain.Dice;
+import skunk.domain.Turn;
 
 public class SkunkUI
 {
-	int numberOfPlayers;
 
 	public SkunkUI()
 	{
@@ -19,18 +20,6 @@ public class SkunkUI
 
 		// numberOfPlayers = StdIn.readInt();
 
-		numberOfPlayers = 1;
-
-	}
-
-	public int getNumberOfPlayers()
-	{
-		return numberOfPlayers;
-	}
-
-	public void setNumberOfPlayers(int numberOfPlayers)
-	{
-		this.numberOfPlayers = numberOfPlayers;
 	}
 
 	public String startTurn(Turn turn, int kitty)

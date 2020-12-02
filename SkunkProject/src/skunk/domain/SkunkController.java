@@ -2,6 +2,7 @@ package skunk.domain;
 
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
+import myskunk.pl.SkunkUI;
 
 public class SkunkController
 {
@@ -18,7 +19,7 @@ public class SkunkController
 	{
 		SkunkUI UI = new SkunkUI();
 
-		Player[] playerArray = new Player[UI.numberOfPlayers];
+		Player[] playerArray = new Player[1];
 
 		Player player1 = new Player("Goku");
 
