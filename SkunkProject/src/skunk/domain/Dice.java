@@ -23,7 +23,7 @@ public class Dice
 	}
 
 	public Dice(Die die1, Die die2) // overloaded
-															// constructor
+									// constructor
 	{
 		this.die1 = die1;
 		this.die2 = die2;
@@ -43,6 +43,16 @@ public class Dice
 	{
 		return this.lastRoll;
 
+	}
+
+	public Die getDie1()
+	{
+		return this.die1;
+	}
+
+	public Die getDie2()
+	{
+		return this.die2;
 	}
 
 	public void setLastRoll(int die1Roll, int die2Roll) throws InvalidDieValueException

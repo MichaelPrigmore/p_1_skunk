@@ -22,31 +22,24 @@ public class SkunkController
 
 		Player player1 = new Player("Goku");
 
-		Dice_Original myDice = new Dice_Original();
+		Dice myDice = new Dice();
 
 		int kitty = 0;
 
 		Turn turn = new Turn();
+
 		turn.setPlayer(player1);
 
-		String decision;
+		String decision = "";
 
-		StdOut.println(turn.getPlayer().getName() + "'s Turn!" + "\n");
-
-		StdOut.println("Pre-turn score: " + turn.getPlayer().getScore() + "\n" + "Current turn score: "
-				+ turn.get_Current_Turn_Score() + "\n" + "Kitty: " + kitty + "\n" + turn.getPlayer().getName()
-				+ "'s chips: " + turn.getPlayer().getChips() + "\n" + turn.getPlayer().getName()
-				+ ", would you like to roll? (y/n)");
-
-		decision = StdIn.readString();
+		decision = UI.startTurn(turn, kitty);
 
 		while (decision.equalsIgnoreCase("y"))
 		{
 
 			myDice.roll();
 
-			StdOut.println(turn.getPlayer().getName() + " rolled a " + myDice.getLastRoll() + " composed of a "
-					+ myDice.getDie1().getLastRoll() + " and a " + myDice.getDie2().getLastRoll());
+			UI.rollMessage(turn, myDice);
 
 			// Conditions
 
@@ -72,14 +65,13 @@ public class SkunkController
 
 				turn.set_Current_Turn_Score(0);
 
-				StdOut.println("\nSkunk-Deuce!\n");
+				UI.rolledDeuce();
 
-				StdOut.println("Pre-turn score: " + turn.getPlayer().getScore() + "\n" + "Current turn score: "
-						+ turn.get_Current_Turn_Score() + "\n" + "Kitty: " + kitty + "\n" + turn.getPlayer().getName()
-						+ "'s chips: " + turn.getPlayer().getChips());
+				UI.turnSummary(turn, kitty);
 
-				StdOut.println(turn.getPlayer().getName() + "'s total score is " + turn.getPlayer().getScore());
-				StdOut.println("End of turn");
+				UI.totalScore(turn);
+
+				UI.endOfTurn();
 
 				break;
 
@@ -102,14 +94,13 @@ public class SkunkController
 
 				turn.set_Current_Turn_Score(0);
 
-				StdOut.println("\nSkunk!\n");
+				UI.rolledSingleSkunk();
 
-				StdOut.println("Pre-turn score: " + turn.getPlayer().getScore() + "\n" + "Current turn score: "
-						+ turn.get_Current_Turn_Score() + "\n" + "Kitty: " + kitty + "\n" + turn.getPlayer().getName()
-						+ "'s chips: " + turn.getPlayer().getChips());
+				UI.turnSummary(turn, kitty);
 
-				StdOut.println(turn.getPlayer().getName() + "'s total score is " + turn.getPlayer().getScore());
-				StdOut.println("End of turn");
+				UI.totalScore(turn);
+
+				UI.endOfTurn();
 
 				break;
 
@@ -136,16 +127,15 @@ public class SkunkController
 
 				turn.set_Current_Turn_Score(0);
 
-				StdOut.println("\nDouble Skunk!\n");
-
-				StdOut.println("Pre-turn score: " + turn.getPlayer().getScore() + "\n" + "Current turn score: "
-						+ turn.get_Current_Turn_Score() + "\n" + "Kitty: " + kitty + "\n" + turn.getPlayer().getName()
-						+ "'s chips: " + turn.getPlayer().getChips());
-
 				turn.getPlayer().setScore(0);
 
-				StdOut.println(turn.getPlayer().getName() + "'s total score is " + turn.getPlayer().getScore());
-				StdOut.println("End of turn");
+				UI.rolledDoubleSkunk();
+
+				UI.turnSummary(turn, kitty);
+
+				UI.totalScore(turn);
+
+				UI.endOfTurn();
 
 				break;
 
@@ -158,12 +148,9 @@ public class SkunkController
 
 				turn.set_Current_Turn_Score(turn.get_Current_Turn_Score() + myDice.getLastRoll());
 
-				StdOut.println("Pre-turn score: " + turn.getPlayer().getScore() + "\n" + "Current turn score: "
-						+ turn.get_Current_Turn_Score() + "\n" + "Kitty: " + kitty + "\n" + turn.getPlayer().getName()
-						+ "'s chips: " + turn.getPlayer().getChips() + "\n" + turn.getPlayer().getName()
-						+ ", would you like to roll? (y/n)");
+				UI.turnSummary(turn, kitty);
 
-				decision = StdIn.readString();
+				decision = UI.rollAgainChoice(turn);
 
 				if (decision.equalsIgnoreCase("n"))
 				{
