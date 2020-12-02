@@ -1,5 +1,7 @@
 package skunk.domain;
 
+import skunk.dl.Player;
+
 public class Turn
 {
 	private Player player;

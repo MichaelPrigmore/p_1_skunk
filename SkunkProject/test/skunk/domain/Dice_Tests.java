@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import skunk.dl.Dice;
+import skunk.dl.Die;
+import skunk.dl.InvalidDieValueException;
+
 class Dice_Tests
 {
 

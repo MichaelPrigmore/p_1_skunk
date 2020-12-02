@@ -1,4 +1,4 @@
-package skunk.domain;
+package Extra;
 
 public class Die_Original
 {

@@ -1,4 +1,4 @@
-package skunk.domain;
+package skunk.dl;
 
 public class Player
 {

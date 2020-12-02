@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.Test;
 
+import Extra.Dice_Original;
+import Extra.Die_Original;
+
 class Dice_Original_Tests
 {
 

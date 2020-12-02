@@ -1,8 +1,8 @@
 package myskunk.pl;
 
-import skunk.domain.Dice;
-import skunk.domain.Player;
-import skunk.domain.SkunkController;
+import skunk.dl.Dice;
+import skunk.dl.Player;
+import skunk.dl.SkunkController;
 import skunk.domain.Turn;
 
 public class SkunkApp

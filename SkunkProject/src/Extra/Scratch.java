@@ -1,4 +1,4 @@
-package skunk.domain;
+package Extra;
 import edu.princeton.cs.introcs.*;
 
 public class Scratch

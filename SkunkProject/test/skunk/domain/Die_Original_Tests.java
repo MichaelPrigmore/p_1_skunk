@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Extra.Die_Original;
+
 public class Die_Original_Tests
 {
 
