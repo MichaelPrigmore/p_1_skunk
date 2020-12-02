@@ -1,7 +1,5 @@
 package skunk.domain;
 
-import java.util.function.Supplier;
-
 public class Player
 {
 	private int score;
