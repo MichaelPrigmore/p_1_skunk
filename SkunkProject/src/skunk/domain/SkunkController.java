@@ -1,7 +1,5 @@
 package skunk.domain;
 
-import edu.princeton.cs.introcs.StdIn;
-import edu.princeton.cs.introcs.StdOut;
 import myskunk.pl.SkunkUI;
 
 public class SkunkController
@@ -19,7 +17,7 @@ public class SkunkController
 	{
 		SkunkUI UI = new SkunkUI();
 
-		Player[] playerArray = new Player[1];
+		this.playerArray = new Player[1];
 
 		Player player1 = new Player("Goku");
 
@@ -158,8 +156,9 @@ public class SkunkController
 					score = turn.getPlayer().getScore() + turn.get_Current_Turn_Score();
 					turn.getPlayer().setScore(score);
 
-					StdOut.println(turn.getPlayer().getName() + "'s total score is " + turn.getPlayer().getScore());
-					StdOut.println("End of turn");
+					UI.totalScore(turn);
+
+					UI.endOfTurn();
 				}
 			}
 
