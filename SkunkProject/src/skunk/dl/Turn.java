@@ -8,6 +8,7 @@ public class Turn
 	public Turn()
 	{
 		this.Current_Turn_Score = 0;
+		player = new Player();
 	}
 
 	public void setPlayer(Player player)

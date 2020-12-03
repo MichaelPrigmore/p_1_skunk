@@ -4,20 +4,20 @@ import myskunk.pl.SkunkUI;
 
 public class SkunkController
 {
-	int SINGLE_SKUNK_CHIP_PENALTY = 1;
-	int SKUNK_DUECE_CHIP_PENALTY = 2;
-	int DOUBLE_SKUNK_CHIP_PENALTY = 4;
-	int numberOfPlayers;
-	Player[] playerArray;
+	private int SINGLE_SKUNK_CHIP_PENALTY = 1;
+	private int SKUNK_DUECE_CHIP_PENALTY = 2;
+	private int DOUBLE_SKUNK_CHIP_PENALTY = 4;
+	// private int numberOfPlayers;
+	// private Player[] playerArray;
 
-	String decision = "";
-	int chips;
-	int score;
-	int kitty = 0;
-	Dice myDice = new Dice();
-	Turn turn = new Turn();
-	SkunkUI UI = new SkunkUI();
-	RollState rollState;
+	private String decision = "";
+	private int chips;
+	private int score;
+	private int kitty = 0;
+	private Dice myDice = new Dice();
+	private Turn turn = new Turn();
+	private SkunkUI UI = new SkunkUI();
+	private RollState rollState;
 
 	public enum RollState
 	{
@@ -27,12 +27,85 @@ public class SkunkController
 	public SkunkController()
 	{
 
-		this.playerArray = new Player[1];
+		// this.playerArray = new Player[1];
 
 		Player player1 = new Player("Goku");
 
 		turn.setPlayer(player1); // simulating just one turn for now
 
+	}
+
+	public SkunkController(Boolean cheatModeOff)
+	{
+
+		// this.playerArray = new Player[1];
+
+		Player player1 = new Player("Goku");
+
+		turn.setPlayer(player1); // simulating just one turn for now
+
+		this.myDice.setIsFairDice(cheatModeOff);
+
+	}
+
+	public String getDecision()
+	{
+		return decision;
+	}
+
+	public void setDecision(String decision)
+	{
+		this.decision = decision;
+	}
+
+	public int getChips()
+	{
+		return chips;
+	}
+
+	public void setChips(int chips)
+	{
+		this.chips = chips;
+	}
+
+	public int getKitty()
+	{
+		return kitty;
+	}
+
+	public void setKitty(int kitty)
+	{
+		this.kitty = kitty;
+	}
+
+	public Dice getMyDice()
+	{
+		return myDice;
+	}
+
+	public void setMyDice(Dice myDice)
+	{
+		this.myDice = myDice;
+	}
+
+	public Turn getTurn()
+	{
+		return turn;
+	}
+
+	public void setTurn(Turn turn)
+	{
+		this.turn = turn;
+	}
+
+	public RollState getRollState()
+	{
+		return rollState;
+	}
+
+	public void setRollState(RollState rollState)
+	{
+		this.rollState = rollState;
 	}
 
 	public void playGame()
@@ -46,7 +119,7 @@ public class SkunkController
 
 			UI.rollMessage(turn, myDice);
 
-			scoreCalculator(turn, myDice, kitty);
+			scoreCalculator(turn, myDice);
 
 			if (rollState != RollState.NOPENALTY)
 			{
@@ -58,7 +131,6 @@ public class SkunkController
 
 				case DOUBLESKUNK:
 					UI.rolledDoubleSkunk();
-					;
 					break;
 
 				case SKUNKDEUCE:
@@ -100,7 +172,7 @@ public class SkunkController
 		}
 	}
 
-	public void scoreCalculator(Turn turn, Dice myDice, int kitty)
+	public void scoreCalculator(Turn turn, Dice myDice)
 	{
 
 		// Skunk-Deuce Penalty

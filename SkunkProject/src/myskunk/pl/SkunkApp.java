@@ -1,9 +1,6 @@
 package myskunk.pl;
 
-import skunk.dl.Dice;
-import skunk.dl.Player;
 import skunk.dl.SkunkController;
-import skunk.dl.Turn;
 
 public class SkunkApp
 {
