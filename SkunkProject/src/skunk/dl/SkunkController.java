@@ -16,22 +16,29 @@ public class SkunkController
 	private int kitty = 0;
 	private Dice myDice = new Dice();
 	private Turn turn = new Turn();
-	private SkunkUI UI = new SkunkUI();
-	private RollState rollState;
+	private SkunkUI UI;
+	private Game game = new Game();
+	public RollState rollState;
+	public ControllerState controllerState;
 
 	public enum RollState
 	{
 		NOPENALTY, SINGLESKUNK, DOUBLESKUNK, SKUNKDEUCE
 	}
 
+	public enum ControllerState
+	{
+		INITIALIZE
+	}
+
 	public SkunkController()
 	{
 
-		// this.playerArray = new Player[1];
+		SkunkUI UI = new SkunkUI();
 
-		Player player1 = new Player("Goku");
+		UI.setController(this);
 
-		turn.setPlayer(player1); // simulating just one turn for now
+		UI.beginNewGame();
 
 	}
 
@@ -48,67 +55,44 @@ public class SkunkController
 
 	}
 
-	public String getDecision()
+	public SkunkUI getUI()
 	{
-		return decision;
+		return UI;
 	}
 
-	public void setDecision(String decision)
+	public void setUI(SkunkUI UI)
 	{
-		this.decision = decision;
+		this.UI = UI;
 	}
 
-	public int getChips()
+	public ControllerState getControllerState()
 	{
-		return chips;
+		return controllerState;
 	}
 
-	public void setChips(int chips)
+	public void setControllerState(ControllerState controllerState)
 	{
-		this.chips = chips;
+		this.controllerState = controllerState;
+
 	}
 
-	public int getKitty()
+	public void trigger()
 	{
-		return kitty;
+		switch (controllerState)
+		{
+		case INITIALIZE:
+			initializeNewGame();
+			break;
+
+		}
 	}
 
-	public void setKitty(int kitty)
+	private void initializeNewGame()
 	{
-		this.kitty = kitty;
+		game.setRoster(UI.getRoster());
 	}
 
-	public Dice getMyDice()
-	{
-		return myDice;
-	}
-
-	public void setMyDice(Dice myDice)
-	{
-		this.myDice = myDice;
-	}
-
-	public Turn getTurn()
-	{
-		return turn;
-	}
-
-	public void setTurn(Turn turn)
-	{
-		this.turn = turn;
-	}
-
-	public RollState getRollState()
-	{
-		return rollState;
-	}
-
-	public void setRollState(RollState rollState)
-	{
-		this.rollState = rollState;
-	}
-
-	public void playGame()
+	public void playGameFix()
 	{
 		decision = UI.startTurn(turn, kitty);
 
@@ -253,6 +237,66 @@ public class SkunkController
 			rollState = RollState.NOPENALTY;
 		}
 
+	}
+
+	public String getDecision()
+	{
+		return decision;
+	}
+
+	public void setDecision(String decision)
+	{
+		this.decision = decision;
+	}
+
+	public int getChips()
+	{
+		return chips;
+	}
+
+	public void setChips(int chips)
+	{
+		this.chips = chips;
+	}
+
+	public int getKitty()
+	{
+		return kitty;
+	}
+
+	public void setKitty(int kitty)
+	{
+		this.kitty = kitty;
+	}
+
+	public Dice getMyDice()
+	{
+		return myDice;
+	}
+
+	public void setMyDice(Dice myDice)
+	{
+		this.myDice = myDice;
+	}
+
+	public Turn getTurn()
+	{
+		return turn;
+	}
+
+	public void setTurn(Turn turn)
+	{
+		this.turn = turn;
+	}
+
+	public RollState getRollState()
+	{
+		return rollState;
+	}
+
+	public void setRollState(RollState rollState)
+	{
+		this.rollState = rollState;
 	}
 
 }

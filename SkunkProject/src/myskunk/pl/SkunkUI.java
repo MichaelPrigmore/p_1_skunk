@@ -2,24 +2,65 @@ package myskunk.pl;
 
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
+import myskunk.pl.SkunkUI;
 import skunk.dl.Dice;
+import skunk.dl.Player;
+import skunk.dl.SkunkController;
 import skunk.dl.Turn;
+import skunk.dl.SkunkController.ControllerState;
 
 public class SkunkUI
 {
+	SkunkController controller;
+	int numberOfPlayers;
+	Player[] roster;
 
 	public SkunkUI()
 	{
+
+	}
+
+	public void setController(SkunkController controller)
+	{
+		this.controller = controller;
+
+	}
+
+	public void beginNewGame()
+	{
 		StdOut.println("Hello skunk players!\n");
 
-		StdOut.println("Simulate 1 turn for one player\n");
+		StdOut.println("How many players are there?\n");
 
-		// Just one player for P_1.2
+		this.numberOfPlayers = StdIn.readInt();
 
-		// StdOut.println("Enter number of players: \n");
+		Player[] roster = new Player[numberOfPlayers];
 
-		// numberOfPlayers = StdIn.readInt();
+		String playerName = "default";
 
+		for (int i = 0; i < numberOfPlayers; i++)
+		{
+			StdOut.println("Enter the name of player " + (i + 1) + ":");
+
+			playerName = StdIn.readString();
+
+			roster[i].setName(playerName);
+		}
+
+		setControllerState(ControllerState.INITIALIZE);
+
+		controller.trigger();
+
+	}
+
+	public int getNumberOfPlayers()
+	{
+		return numberOfPlayers;
+	}
+
+	public void setControllerState(ControllerState controllerState)
+	{
+		controller.setControllerState(controllerState);
 	}
 
 	public String startTurn(Turn turn, int kitty)
@@ -88,6 +129,11 @@ public class SkunkUI
 		String decision = StdIn.readString();
 
 		return decision;
+	}
+
+	public Player[] getRoster()
+	{
+		return this.roster;
 	}
 
 }

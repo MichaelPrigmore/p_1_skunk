@@ -13,6 +13,11 @@ public class Player
 		this.name = "default";
 	}
 
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
 	public Player(String name)
 	{
 		this.score = 0;
