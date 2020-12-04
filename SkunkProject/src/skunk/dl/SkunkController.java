@@ -191,21 +191,6 @@ public class SkunkController
 
 	}
 
-	public SkunkUI getUI()
-	{
-		return UI;
-	}
-
-	public void setUI(SkunkUI UI)
-	{
-		this.UI = UI;
-	}
-
-	public ControllerState getControllerState()
-	{
-		return controllerState;
-	}
-
 	public void setControllerState(ControllerState controllerState)
 	{
 		this.controllerState = controllerState;
@@ -217,19 +202,9 @@ public class SkunkController
 		return game;
 	}
 
-	public void setGame(Game game)
-	{
-		this.game = game;
-	}
-
 	public Integer getWhosTurn()
 	{
 		return whosTurn;
-	}
-
-	public void setWhosTurn(Integer whosTurn)
-	{
-		this.whosTurn = whosTurn;
 	}
 
 	public Dice getMyDice()
@@ -237,29 +212,14 @@ public class SkunkController
 		return myDice;
 	}
 
-	public void setMyDice(Dice myDice)
-	{
-		this.myDice = myDice;
-	}
-
 	public Turn getTurn()
 	{
 		return turn;
 	}
 
-	public void setTurn(Turn turn)
-	{
-		this.turn = turn;
-	}
-
 	public RollState getRollState()
 	{
 		return rollState;
-	}
-
-	public void setRollState(RollState rollState)
-	{
-		this.rollState = rollState;
 	}
 
 }

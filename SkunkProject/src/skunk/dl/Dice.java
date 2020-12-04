@@ -59,6 +59,7 @@ public class Dice
 	{
 		this.die1.setLastRoll(die1Roll);
 		this.die2.setLastRoll(die2Roll);
+		this.lastRoll = die1Roll + die2Roll;
 
 	}
 
