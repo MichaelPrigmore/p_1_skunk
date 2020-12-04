@@ -8,6 +8,7 @@ import skunk.dl.Player;
 import skunk.dl.SkunkController;
 import skunk.dl.Turn;
 import skunk.dl.SkunkController.ControllerState;
+import skunk.dl.SkunkController.RollState;
 
 public class SkunkUI
 {
@@ -20,9 +21,18 @@ public class SkunkUI
 
 	}
 
-	public void setController(SkunkController controller)
+	public SkunkUI(int numberOfPlayers) // Used for testing purposes
 	{
-		this.controller = controller;
+		this.numberOfPlayers = numberOfPlayers;
+		roster = new Player[this.numberOfPlayers];
+
+		for (int i = 0; i < this.numberOfPlayers; i++)
+		{
+
+			roster[i] = new Player();
+
+			roster[i].setName("tester" + i);
+		}
 
 	}
 
@@ -30,11 +40,19 @@ public class SkunkUI
 	{
 		StdOut.println("Hello skunk players!\n");
 
-		StdOut.println("How many players are there?\n");
+		/*****************************************************
+		 * Commented for 1 player and one turn per P1-2 requirements. Uncomment
+		 * this section and delete next 2 lines for P1-3.
+		 * 
+		 * StdOut.println("How many players are there?\n");
+		 * 
+		 * this.numberOfPlayers = StdIn.readInt();
+		 *****************************************************/
 
-		this.numberOfPlayers = StdIn.readInt();
+		StdOut.println("Simulate one turn for one player\n");
+		this.numberOfPlayers = 1;
 
-		Player[] roster = new Player[numberOfPlayers];
+		roster = new Player[numberOfPlayers];
 
 		String playerName = "default";
 
@@ -44,6 +62,8 @@ public class SkunkUI
 
 			playerName = StdIn.readString();
 
+			roster[i] = new Player();
+
 			roster[i].setName(playerName);
 		}
 
@@ -51,36 +71,92 @@ public class SkunkUI
 
 		controller.trigger();
 
+		startTurn();
+
 	}
 
-	public int getNumberOfPlayers()
+	public void startTurn()
 	{
-		return numberOfPlayers;
-	}
 
-	public void setControllerState(ControllerState controllerState)
-	{
-		controller.setControllerState(controllerState);
-	}
+		setControllerState(ControllerState.STARTTURN);
 
-	public String startTurn(Turn turn, int kitty)
-	{
-		StdOut.println(turn.getPlayer().getName() + "'s Turn!" + "\n");
+		controller.trigger();
 
-		StdOut.println("Pre-turn score: " + turn.getPlayer().getScore() + "\n" + "Current turn score: "
-				+ turn.get_Current_Turn_Score() + "\n" + "Kitty: " + kitty + "\n" + turn.getPlayer().getName()
-				+ "'s chips: " + turn.getPlayer().getChips() + "\n" + turn.getPlayer().getName()
+		StdOut.println(controller.getTurn().getPlayer().getName() + "'s Turn!" + "\n");
+
+		StdOut.println("Pre-turn score: " + controller.getTurn().getPlayer().getScore() + "\n" + "Current turn score: "
+				+ controller.getTurn().get_Current_Turn_Score() + "\n" + "Kitty: " + controller.getGame().getKitty()
+				+ "\n" + controller.getTurn().getPlayer().getName() + "'s chips: "
+				+ controller.getTurn().getPlayer().getChips() + "\n" + controller.getTurn().getPlayer().getName()
 				+ ", would you like to roll? (y/n)");
 
 		String decision = StdIn.readString();
 
-		return decision;
+		while (decision.equalsIgnoreCase("y"))
+		{
+
+			controller.getMyDice().roll();
+
+			rollMessage();
+
+			controller.scoreCalculator();
+
+			if (controller.getRollState() != RollState.NOPENALTY)
+			{
+				switch (controller.getRollState())
+				{
+				case SINGLESKUNK:
+					rolledSingleSkunk();
+					break;
+
+				case DOUBLESKUNK:
+					rolledDoubleSkunk();
+					break;
+
+				case SKUNKDEUCE:
+					rolledDeuce();
+					break;
+				}
+
+				turnSummary();
+
+				totalScore();
+
+				endOfTurn();
+
+				break;
+
+			}
+
+			// No penalties
+
+			else
+
+			{
+
+				turnSummary();
+
+				decision = rollAgainChoice();
+
+				if (decision.equalsIgnoreCase("n"))
+				{
+					controller.endTurnNoPenalty();
+
+					totalScore();
+
+					endOfTurn();
+				}
+			}
+
+		}
+
 	}
 
-	public void rollMessage(Turn turn, Dice myDice)
+	public void rollMessage()
 	{
-		StdOut.println(turn.getPlayer().getName() + " rolled a " + myDice.getLastRoll() + " composed of a "
-				+ myDice.getDie1().getLastRoll() + " and a " + myDice.getDie2().getLastRoll());
+		StdOut.println(controller.getTurn().getPlayer().getName() + " rolled a " + controller.getMyDice().getLastRoll()
+				+ " composed of a " + controller.getMyDice().getDie1().getLastRoll() + " and a "
+				+ controller.getMyDice().getDie2().getLastRoll());
 
 	}
 
@@ -90,17 +166,19 @@ public class SkunkUI
 
 	}
 
-	public void turnSummary(Turn turn, int kitty)
+	public void turnSummary()
 	{
-		StdOut.println("Pre-turn score: " + turn.getPlayer().getScore() + "\n" + "Current turn score: "
-				+ turn.get_Current_Turn_Score() + "\n" + "Kitty: " + kitty + "\n" + turn.getPlayer().getName()
-				+ "'s chips: " + turn.getPlayer().getChips());
+		StdOut.println("Pre-turn score: " + controller.getTurn().getPlayer().getScore() + "\n" + "Current turn score: "
+				+ controller.getTurn().get_Current_Turn_Score() + "\n" + "Kitty: " + controller.getGame().getKitty()
+				+ "\n" + controller.getTurn().getPlayer().getName() + "'s chips: "
+				+ controller.getTurn().getPlayer().getChips());
 
 	}
 
-	public void totalScore(Turn turn)
+	public void totalScore()
 	{
-		StdOut.println(turn.getPlayer().getName() + "'s total score is " + turn.getPlayer().getScore());
+		StdOut.println(controller.getTurn().getPlayer().getName() + "'s total score is "
+				+ controller.getTurn().getPlayer().getScore());
 
 	}
 
@@ -122,9 +200,9 @@ public class SkunkUI
 
 	}
 
-	public String rollAgainChoice(Turn turn)
+	public String rollAgainChoice()
 	{
-		StdOut.println("\n" + turn.getPlayer().getName() + ", would you like to roll? (y/n)");
+		StdOut.println("\n" + controller.getTurn().getPlayer().getName() + ", would you like to roll? (y/n)");
 
 		String decision = StdIn.readString();
 
@@ -134,6 +212,22 @@ public class SkunkUI
 	public Player[] getRoster()
 	{
 		return this.roster;
+	}
+
+	public void setController(SkunkController controller)
+	{
+		this.controller = controller;
+
+	}
+
+	public int getNumberOfPlayers()
+	{
+		return numberOfPlayers;
+	}
+
+	public void setControllerState(ControllerState controllerState)
+	{
+		controller.setControllerState(controllerState);
 	}
 
 }
