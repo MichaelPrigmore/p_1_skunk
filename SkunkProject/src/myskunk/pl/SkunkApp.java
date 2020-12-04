@@ -1,6 +1,6 @@
 package myskunk.pl;
 
-import skunk.dl.SkunkController;
+import myskunk.dl.SkunkController;
 
 public class SkunkApp
 {

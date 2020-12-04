@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import skunk.dl.Player;
+import myskunk.dl.Player;
 
 class Player_tests
 {

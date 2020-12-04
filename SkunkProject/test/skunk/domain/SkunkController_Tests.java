@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import skunk.dl.Dice;
-import skunk.dl.InvalidDieValueException;
-import skunk.dl.Player;
-import skunk.dl.SkunkController;
-import skunk.dl.SkunkController.ControllerState;
-import skunk.dl.SkunkController.RollState;
-import skunk.dl.Turn;
+import myskunk.dl.Dice;
+import myskunk.dl.InvalidDieValueException;
+import myskunk.dl.Player;
+import myskunk.dl.SkunkController;
+import myskunk.dl.Turn;
+import myskunk.dl.SkunkController.ControllerState;
+import myskunk.dl.SkunkController.RollState;
 
 class SkunkController_Tests
 {

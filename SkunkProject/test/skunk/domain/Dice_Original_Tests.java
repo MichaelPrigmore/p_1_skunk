@@ -1,11 +1,13 @@
 package skunk.domain;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import Extra.Dice_Original;
 import Extra.Die_Original;
+import myskunk.dl.Dice;
 
 class Dice_Original_Tests
 {
@@ -31,6 +33,24 @@ class Dice_Original_Tests
 	{
 		Dice_Original myDice = new Dice_Original();
 		assertEquals(myDice.toString().charAt(0), 'D');
+	}
+
+	@Test
+	public void test_500_dice_rolls()
+	{
+		Dice_Original myDice = new Dice_Original();
+
+		for (int i = 0; i < 500; i++)
+		{
+			myDice.roll();
+
+			int die1Roll = myDice.getDie1().getLastRoll();
+			int die2Roll = myDice.getDie2().getLastRoll();
+
+			assertTrue(die1Roll > 0 && die1Roll < 7);
+			assertTrue(die2Roll > 0 && die2Roll < 7);
+
+		}
 	}
 
 }

@@ -2,13 +2,13 @@ package myskunk.pl;
 
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
+import myskunk.dl.Dice;
+import myskunk.dl.Player;
+import myskunk.dl.SkunkController;
+import myskunk.dl.Turn;
+import myskunk.dl.SkunkController.ControllerState;
+import myskunk.dl.SkunkController.RollState;
 import myskunk.pl.SkunkUI;
-import skunk.dl.Dice;
-import skunk.dl.Player;
-import skunk.dl.SkunkController;
-import skunk.dl.Turn;
-import skunk.dl.SkunkController.ControllerState;
-import skunk.dl.SkunkController.RollState;
 
 public class SkunkUI
 {
@@ -82,12 +82,14 @@ public class SkunkUI
 
 		controller.trigger();
 
-		StdOut.println(controller.getTurn().getPlayer().getName() + "'s Turn!" + "\n");
+		StdOut.println("\n" + controller.getTurn().getPlayer().getName() + "'s Turn!" + "\n");
 
-		StdOut.println("Pre-turn score: " + controller.getTurn().getPlayer().getScore() + "\n" + "Current turn score: "
-				+ controller.getTurn().get_Current_Turn_Score() + "\n" + "Kitty: " + controller.getGame().getKitty()
-				+ "\n" + controller.getTurn().getPlayer().getName() + "'s chips: "
-				+ controller.getTurn().getPlayer().getChips() + "\n" + controller.getTurn().getPlayer().getName()
+		StdOut.println("Chips in the kitty: " + controller.getGame().getKitty() + "\n"
+				+ controller.getTurn().getPlayer().getName() + "'s chips: "
+				+ controller.getTurn().getPlayer().getChips() + "\n\n" + controller.getTurn().getPlayer().getName()
+				+ "'s pre-turn score: " + controller.getTurn().getPlayer().getScore() + "\n"
+				+ controller.getTurn().getPlayer().getName() + "'s current turn score: "
+				+ controller.getTurn().get_Current_Turn_Score() + "\n\n" + controller.getTurn().getPlayer().getName()
 				+ ", would you like to roll? (y/n)");
 
 		String decision = StdIn.readString();
@@ -168,17 +170,16 @@ public class SkunkUI
 
 	public void turnSummary()
 	{
-		StdOut.println("Pre-turn score: " + controller.getTurn().getPlayer().getScore() + "\n" + "Current turn score: "
-				+ controller.getTurn().get_Current_Turn_Score() + "\n" + "Kitty: " + controller.getGame().getKitty()
-				+ "\n" + controller.getTurn().getPlayer().getName() + "'s chips: "
-				+ controller.getTurn().getPlayer().getChips());
+		StdOut.println(controller.getTurn().getPlayer().getName() + "'s current turn score: "
+				+ controller.getTurn().get_Current_Turn_Score() + "\n");
 
 	}
 
 	public void totalScore()
 	{
 		StdOut.println(controller.getTurn().getPlayer().getName() + "'s total score is "
-				+ controller.getTurn().getPlayer().getScore());
+				+ controller.getTurn().getPlayer().getScore() + "\n" + controller.getTurn().getPlayer().getName()
+				+ "'s chips: " + controller.getTurn().getPlayer().getChips());
 
 	}
 
@@ -202,7 +203,7 @@ public class SkunkUI
 
 	public String rollAgainChoice()
 	{
-		StdOut.println("\n" + controller.getTurn().getPlayer().getName() + ", would you like to roll? (y/n)");
+		StdOut.println(controller.getTurn().getPlayer().getName() + ", would you like to roll? (y/n)");
 
 		String decision = StdIn.readString();
 

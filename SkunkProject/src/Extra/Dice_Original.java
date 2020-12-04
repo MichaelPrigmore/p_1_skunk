@@ -34,7 +34,8 @@ public class Dice_Original
 		this.roll();
 	}
 
-	public Dice_Original(Die_Original die1, Die_Original die2) // overloaded constructor
+	public Dice_Original(Die_Original die1, Die_Original die2) // overloaded
+																// constructor
 	{
 		this.die1 = die1;
 		this.die2 = die2;
@@ -84,23 +85,23 @@ public class Dice_Original
 
 	public static final int NUM_TRIALS = 360;
 
-	public static void main(String[] args)
-	{
-		// simulate repeated rolls of Dice, counting the many double skunks
-
-		Dice_Original dice = new Dice_Original();
-		int doubleSkunkCount = 0;
-
-		for (int i = 0; i < NUM_TRIALS; i++)
-		{
-			dice.roll();
-			StdOut.println(dice);
-
-			if (dice.getLastRoll() == 2)
-				doubleSkunkCount++;
-		}
-
-		StdOut.println("Actual count: " + doubleSkunkCount);
-		StdOut.println("Expected count: " + (NUM_TRIALS / 36.0));
-	}
+	// public static void main(String[] args)
+	// {
+	// // simulate repeated rolls of Dice, counting the many double skunks
+	//
+	// Dice_Original dice = new Dice_Original();
+	// int doubleSkunkCount = 0;
+	//
+	// for (int i = 0; i < NUM_TRIALS; i++)
+	// {
+	// dice.roll();
+	// StdOut.println(dice);
+	//
+	// if (dice.getLastRoll() == 2)
+	// doubleSkunkCount++;
+	// }
+	//
+	// StdOut.println("Actual count: " + doubleSkunkCount);
+	// StdOut.println("Expected count: " + (NUM_TRIALS / 36.0));
+	// }
 }

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import skunk.dl.Player;
-import skunk.dl.Turn;
+import myskunk.dl.Player;
+import myskunk.dl.Turn;
 
 class test_Turn
 {

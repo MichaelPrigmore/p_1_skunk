@@ -1,4 +1,4 @@
-package skunk.dl;
+package myskunk.dl;
 
 import myskunk.pl.SkunkUI;
 
