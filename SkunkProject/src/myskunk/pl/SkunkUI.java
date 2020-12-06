@@ -1,14 +1,11 @@
 package myskunk.pl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
-import myskunk.dl.Dice;
 import myskunk.dl.Player;
 import myskunk.dl.SkunkController;
-import myskunk.dl.Turn;
 import myskunk.dl.SkunkController.ControllerState;
 import myskunk.dl.SkunkController.RollState;
 import myskunk.pl.SkunkUI;
@@ -40,13 +37,13 @@ public class SkunkUI
 
 	}
 
-	public void beginNewGame() throws IOException
+	public void beginNewGame()
 	{
 		StdOut.println("Hello skunk players!\n");
 
 		StdOut.println("How many players are there?\n");
 
-		this.numberOfPlayers = StdIn.readInt();
+		this.numberOfPlayers = readIntFromUser();
 
 		roster = new Player[numberOfPlayers];
 
@@ -65,7 +62,7 @@ public class SkunkUI
 
 		StdOut.println("Would you like to veiw the complete set of rules? (y/n)\n");
 
-		String decision = StdIn.readString();
+		String decision = yesOrNoChecker();
 
 		if (decision.equalsIgnoreCase("y"))
 		{
@@ -99,20 +96,14 @@ public class SkunkUI
 
 		while (controller.getControllerState() == ControllerState.NORMALTURNPROGRESSION)
 		{
-			StdOut.println("Press enter to begin the next turn: ");
-
-			System.in.read();
-			System.in.read();
+			readyToContinue();
 
 			startTurn();
 		}
 
 		for (int i = 0; i < numberOfPlayers - 1; i++)
 		{
-			StdOut.println("Press enter to begin the next turn: ");
-
-			System.in.read();
-			System.in.read();
+			readyToContinue();
 
 			startTurn();
 		}
@@ -121,7 +112,66 @@ public class SkunkUI
 
 	}
 
-	private void finalizeKitty() throws IOException
+	private void readyToContinue()
+	{
+		StdOut.println("Enter \"y\" when your ready to continue");
+
+		String decision = StdIn.readString();
+		decision.toLowerCase();
+
+		while (!(decision.equals("y")))
+		{
+			StdOut.println("Input error. Must enter \"y\" to continue.");
+			decision = StdIn.readString();
+		}
+
+	}
+
+	private String yesOrNoChecker()
+	{
+		String decision = StdIn.readString();
+		decision.toLowerCase();
+
+		while (!(decision.equals("y") || decision.equals("n")))
+		{
+			StdOut.println("Input error. Input must be \"y\" or \"n\".");
+			decision = StdIn.readString();
+		}
+
+		return decision;
+	}
+
+	private int readIntFromUser()
+	{
+		String num = StdIn.readString();
+
+		while (!isANumber(num) || num.charAt(0) == '0')
+		{
+			StdOut.println("Input error. Input must be a number and the number must be positive.");
+			num = StdIn.readString();
+		}
+
+		int numAsInt = Integer.parseInt(num);
+
+		return numAsInt;
+	}
+
+	private boolean isANumber(String num)
+	{
+		boolean allCharsAreNumeric = true;
+
+		for (int i = 0; i < num.length(); i++)
+		{
+			if (!Character.isDigit(num.charAt(i)))
+			{
+				allCharsAreNumeric = false;
+			}
+		}
+
+		return allCharsAreNumeric;
+	}
+
+	private void finalizeKitty()
 	{
 		ArrayList<Player> winners = new ArrayList<Player>();
 		winners.add(controller.getGame().getRoster()[0]);
@@ -145,8 +195,8 @@ public class SkunkUI
 		}
 		else
 		{
-			StdOut.println(winners.get(0).getName() + " is the winner!\n\nPress enter to see the final tally.\n");
-			System.in.read();
+			StdOut.println(winners.get(0).getName() + " is the winner!\n\nContinue to see the final tally.\n");
+			readyToContinue();
 			controller.calculateFinalChips(winners.get(0));
 		}
 
@@ -165,7 +215,7 @@ public class SkunkUI
 				+ "'s final number of chips: " + player.getChips() + "\n");
 	}
 
-	public void startTurn() throws IOException
+	public void startTurn()
 	{
 
 		controller.trigger();
@@ -181,7 +231,7 @@ public class SkunkUI
 				+ controller.getTurn().get_Current_Turn_Score() + "\n\n" + controller.getTurn().getPlayer().getName()
 				+ ", would you like to roll? (y/n)");
 
-		String decision = StdIn.readString();
+		String decision = yesOrNoChecker();
 
 		while (decision.equalsIgnoreCase("y"))
 		{
@@ -198,17 +248,17 @@ public class SkunkUI
 				{
 				case SINGLESKUNK:
 					rolledSingleSkunk();
-					System.in.read();
+					readyToContinue();
 					break;
 
 				case DOUBLESKUNK:
 					rolledDoubleSkunk();
-					System.in.read();
+					readyToContinue();
 					break;
 
 				case SKUNKDEUCE:
 					rolledDeuce();
-					System.in.read();
+					readyToContinue();
 					break;
 				}
 
@@ -303,7 +353,7 @@ public class SkunkUI
 	{
 		StdOut.println(controller.getTurn().getPlayer().getName() + ", would you like to roll? (y/n)");
 
-		String decision = StdIn.readString();
+		String decision = yesOrNoChecker();
 
 		return decision;
 	}

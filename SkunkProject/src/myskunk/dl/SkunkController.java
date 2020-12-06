@@ -1,7 +1,5 @@
 package myskunk.dl;
 
-import java.io.IOException;
-
 import myskunk.pl.SkunkUI;
 
 public class SkunkController
@@ -56,7 +54,7 @@ public class SkunkController
 
 	}
 
-	public void playGame() throws IOException
+	public void playGame()
 	{
 		UI.beginNewGame();
 	}
