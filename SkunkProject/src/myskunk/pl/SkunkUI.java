@@ -233,71 +233,81 @@ public class SkunkUI
 
 		String decision = yesOrNoChecker();
 
-		while (decision.equalsIgnoreCase("y"))
+		if (decision.equalsIgnoreCase("y"))
 		{
 
-			controller.getMyDice().roll();
-
-			rollMessage();
-
-			controller.scoreCalculator();
-
-			if (controller.getRollState() != RollState.NOPENALTY)
-			{
-				switch (controller.getRollState())
-				{
-				case SINGLESKUNK:
-					rolledSingleSkunk();
-					readyToContinue();
-					break;
-
-				case DOUBLESKUNK:
-					rolledDoubleSkunk();
-					readyToContinue();
-					break;
-
-				case SKUNKDEUCE:
-					rolledDeuce();
-					readyToContinue();
-					break;
-				}
-
-				totalScore();
-
-				endOfTurn();
-
-				break;
-
-			}
-
-			// No penalties
-
-			else
-
+			while (decision.equalsIgnoreCase("y"))
 			{
 
-				turnSummary();
+				controller.getMyDice().roll();
 
-				decision = rollAgainChoice();
+				rollMessage();
 
-				if (decision.equalsIgnoreCase("n"))
+				controller.scoreCalculator();
+
+				if (controller.getRollState() != RollState.NOPENALTY)
 				{
-					controller.endTurnNoPenalty();
+					switch (controller.getRollState())
+					{
+					case SINGLESKUNK:
+						rolledSingleSkunk();
+						readyToContinue();
+						break;
+
+					case DOUBLESKUNK:
+						rolledDoubleSkunk();
+						readyToContinue();
+						break;
+
+					case SKUNKDEUCE:
+						rolledDeuce();
+						readyToContinue();
+						break;
+					}
 
 					totalScore();
 
 					endOfTurn();
+
+					break;
+
 				}
 
-				if ((controller.getTurn().getPlayer().getScore() > WINNINGSCOREVALUE)
-						&& controller.getControllerState() == ControllerState.NORMALTURNPROGRESSION)
+				// No penalties
+
+				else
+
 				{
-					controller.setControllerState(ControllerState.ENDGAME);
-					StdOut.println(controller.getTurn().getPlayer().getName() + " has over " + WINNINGSCOREVALUE
-							+ " points! All other players get one more turn!\n");
+
+					turnSummary();
+
+					decision = rollAgainChoice();
+
+					if (decision.equalsIgnoreCase("n"))
+					{
+						controller.endTurnNoPenalty();
+
+						totalScore();
+
+						endOfTurn();
+					}
+
+					if ((controller.getTurn().getPlayer().getScore() >= WINNINGSCOREVALUE)
+							&& controller.getControllerState() == ControllerState.NORMALTURNPROGRESSION)
+					{
+						controller.setControllerState(ControllerState.ENDGAME);
+						StdOut.println(controller.getTurn().getPlayer().getName() + " has " + WINNINGSCOREVALUE
+								+ " or more points! All other players get one more turn!\n");
+					}
 				}
 			}
 
+		}
+		else
+		{
+			totalScore();
+
+			endOfTurn();
 		}
 
 	}
@@ -333,19 +343,19 @@ public class SkunkUI
 
 	public void rolledDeuce()
 	{
-		StdOut.println("\nSkunk-Deuce! (Press enter to continue)");
+		StdOut.println("\nSkunk-Deuce!\n");
 
 	}
 
 	public void rolledSingleSkunk()
 	{
-		StdOut.println("\nSkunk! (Press enter to continue)");
+		StdOut.println("\nSkunk!\n");
 
 	}
 
 	public void rolledDoubleSkunk()
 	{
-		StdOut.println("\nDouble Skunk! (Press enter to continue)");
+		StdOut.println("\nDouble Skunk!\n");
 
 	}
 
