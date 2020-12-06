@@ -15,6 +15,7 @@ import myskunk.pl.SkunkUI;
 
 public class SkunkUI
 {
+	private static final int WINNINGSCOREVALUE = 100;
 	SkunkController controller;
 	int numberOfPlayers;
 	Player[] roster;
@@ -120,7 +121,7 @@ public class SkunkUI
 
 	}
 
-	private void finalizeKitty()
+	private void finalizeKitty() throws IOException
 	{
 		ArrayList<Player> winners = new ArrayList<Player>();
 		winners.add(controller.getGame().getRoster()[0]);
@@ -144,7 +145,8 @@ public class SkunkUI
 		}
 		else
 		{
-			StdOut.println("\n" + winners.get(0).getName() + " is the winner!\n");
+			StdOut.println(winners.get(0).getName() + " is the winner!\n\nPress enter to see the final tally.\n");
+			System.in.read();
 			controller.calculateFinalChips(winners.get(0));
 		}
 
@@ -237,12 +239,12 @@ public class SkunkUI
 					endOfTurn();
 				}
 
-				if ((controller.getTurn().getPlayer().getScore() > 100)
+				if ((controller.getTurn().getPlayer().getScore() > WINNINGSCOREVALUE)
 						&& controller.getControllerState() == ControllerState.NORMALTURNPROGRESSION)
 				{
 					controller.setControllerState(ControllerState.ENDGAME);
-					StdOut.println(controller.getTurn().getPlayer().getName()
-							+ " has over 100 points! All other players get one more turn!\n");
+					StdOut.println(controller.getTurn().getPlayer().getName() + " has over " + WINNINGSCOREVALUE
+							+ " points! All other players get one more turn!\n");
 				}
 			}
 
@@ -275,7 +277,7 @@ public class SkunkUI
 
 	public void endOfTurn()
 	{
-		StdOut.println("\nEnd of turn");
+		StdOut.println("\nEnd of turn\n");
 
 	}
 
