@@ -41,7 +41,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 		assertEquals(controller.getWhosTurn(), 0);
 
@@ -63,7 +63,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 2);
@@ -81,7 +81,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(2, 1);
@@ -99,7 +99,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 2);
@@ -119,7 +119,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 2);
@@ -141,7 +141,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 2);
@@ -163,7 +163,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 2);
@@ -185,7 +185,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 2);
@@ -207,7 +207,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 1);
@@ -225,7 +225,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 1);
@@ -247,7 +247,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 1);
@@ -271,7 +271,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 1);
@@ -295,7 +295,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 1);
@@ -319,7 +319,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 1);
@@ -343,7 +343,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 3);
@@ -361,7 +361,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(3, 1);
@@ -379,7 +379,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 3);
@@ -399,7 +399,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 3);
@@ -421,7 +421,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 4);
@@ -443,7 +443,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 5);
@@ -465,7 +465,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(1, 6);
@@ -487,7 +487,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(4, 3);
@@ -507,7 +507,7 @@ class SkunkController_Tests
 		controller.setControllerState(ControllerState.INITIALIZE);
 		controller.trigger();
 
-		controller.setControllerState(ControllerState.STARTTURN);
+		controller.setControllerState(ControllerState.NORMALTURNPROGRESSION);
 		controller.trigger();
 
 		controller.getMyDice().setLastRoll(2, 6);

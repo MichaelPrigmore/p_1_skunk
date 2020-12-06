@@ -27,14 +27,26 @@ class Die_Tests
 	}
 
 	@Test
-	public void test_500_fair_roll_values()
+	public void test_500_fair_roll_values_must_be_greater_than_0()
 	{
 		Die myDie = new Die();
 
 		for (int i = 0; i < 500; i++)
 		{
 			myDie.roll();
-			assertTrue(myDie.getLastRoll() > 0 && myDie.getLastRoll() < 7);
+			assertTrue(myDie.getLastRoll() > 0);
+		}
+	}
+
+	@Test
+	public void test_500_fair_roll_values_must_be_less_than_7()
+	{
+		Die myDie = new Die();
+
+		for (int i = 0; i < 500; i++)
+		{
+			myDie.roll();
+			assertTrue(myDie.getLastRoll() < 7);
 		}
 	}
 

@@ -1,5 +1,7 @@
 package myskunk.dl;
 
+import java.io.IOException;
+
 import myskunk.pl.SkunkUI;
 
 public class SkunkController
@@ -26,7 +28,7 @@ public class SkunkController
 
 	public enum ControllerState
 	{
-		INITIALIZE, STARTTURN
+		INITIALIZE, NORMALTURNPROGRESSION, ENDGAME
 	}
 
 	public SkunkController()
@@ -54,7 +56,7 @@ public class SkunkController
 
 	}
 
-	public void playGame()
+	public void playGame() throws IOException
 	{
 		UI.beginNewGame();
 	}
@@ -66,10 +68,14 @@ public class SkunkController
 		case INITIALIZE:
 			initializeNewGame();
 			break;
-		case STARTTURN:
+		case NORMALTURNPROGRESSION:
+			incramentAndSetWhosTurn();
+			break;
+		case ENDGAME:
 			incramentAndSetWhosTurn();
 			break;
 		}
+
 	}
 
 	private void initializeNewGame()
@@ -191,10 +197,55 @@ public class SkunkController
 
 	}
 
+	public void calculateFinalChips(Player player)
+	{
+		for (int i = 0; i < game.getRoster().length; i++)
+		{
+			if (!(game.getRoster()[i].equals(player)))
+			{
+				if (game.getRoster()[i].getScore() > 0)
+				{
+					if (game.getRoster()[i].getChips() >= 5)
+					{
+						game.getRoster()[i].setChips(game.getRoster()[i].getChips() - 5);
+						game.setKitty(game.getKitty() + 5);
+					}
+					else
+					{
+						game.setKitty(game.getKitty() + game.getRoster()[i].getChips());
+						game.getRoster()[i].setChips(0);
+					}
+				}
+				else
+				{
+					if (game.getRoster()[i].getChips() >= 10)
+					{
+						game.getRoster()[i].setChips(game.getRoster()[i].getChips() - 10);
+						game.setKitty(game.getKitty() + 10);
+					}
+					else
+					{
+						game.setKitty(game.getKitty() + game.getRoster()[i].getChips());
+						game.getRoster()[i].setChips(0);
+					}
+				}
+			}
+		}
+
+		player.setChips(player.getChips() + game.getKitty());
+		game.setKitty(0);
+
+	}
+
 	public void setControllerState(ControllerState controllerState)
 	{
 		this.controllerState = controllerState;
 
+	}
+
+	public ControllerState getControllerState()
+	{
+		return controllerState;
 	}
 
 	public Game getGame()
