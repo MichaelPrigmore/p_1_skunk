@@ -85,7 +85,8 @@ public class SkunkUI
 					+ "needed to win. When he decides to stop, his total score is the \"goal.\" Each succeeding player receives one more chance to\n"
 					+ "better the goal and end the game.\r\n" + "\n"
 					+ "The winner of each game collects all chips in \"kitty\" and in addition five chips from each losing player or 10 chips from any\n"
-					+ "player without a score.\n");
+					+ "player without a score.\n\n"
+					+ "In the event of a tie at the end of the game between one or more players, there is no winner and the house keeps the \"kitty.\"\n");
 		}
 
 		setControllerState(ControllerState.INITIALIZE);
