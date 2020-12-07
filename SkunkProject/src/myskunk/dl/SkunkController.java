@@ -195,11 +195,11 @@ public class SkunkController
 
 	}
 
-	public void calculateFinalChips(Player player)
+	public void calculateFinalChips(Player winningPlayer)
 	{
 		for (int i = 0; i < game.getRoster().length; i++)
 		{
-			if (!(game.getRoster()[i].equals(player)))
+			if (!(game.getRoster()[i].equals(winningPlayer)))
 			{
 				if (game.getRoster()[i].getScore() > 0)
 				{
@@ -230,7 +230,7 @@ public class SkunkController
 			}
 		}
 
-		player.setChips(player.getChips() + game.getKitty());
+		winningPlayer.setChips(winningPlayer.getChips() + game.getKitty());
 		game.setKitty(0);
 
 	}

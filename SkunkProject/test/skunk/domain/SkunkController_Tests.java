@@ -57,6 +57,28 @@ class SkunkController_Tests
 	}
 
 	@Test
+	void test_trigger_Endgame() throws InvalidDieValueException
+	{
+		SkunkController controller = new SkunkController(true, 3);
+		controller.setControllerState(ControllerState.INITIALIZE);
+		controller.trigger();
+
+		controller.setControllerState(ControllerState.ENDGAME);
+		controller.trigger();
+		assertEquals(controller.getWhosTurn(), 0);
+
+		controller.trigger();
+		assertEquals(controller.getWhosTurn(), 1);
+
+		controller.trigger();
+		assertEquals(controller.getWhosTurn(), 2);
+
+		controller.trigger();
+		assertEquals(controller.getWhosTurn(), 0);
+
+	}
+
+	@Test
 	void test_trigger_scoreCalculator_skunk_deuce_state() throws InvalidDieValueException
 	{
 		SkunkController controller = new SkunkController(false, 1);
@@ -522,4 +544,133 @@ class SkunkController_Tests
 
 	}
 
+	@Test
+	void test_getControllerState() throws InvalidDieValueException
+	{
+		SkunkController controller = new SkunkController(true, 3);
+		controller.setControllerState(ControllerState.INITIALIZE);
+
+		assertEquals(controller.getControllerState(), ControllerState.INITIALIZE);
+
+	}
+
+	@Test
+	void test_calculateFinalChips_4_players_all_have_10_or_more_chips_and_nonzero_score()
+			throws InvalidDieValueException
+	{
+		SkunkController controller = new SkunkController(true, 4);
+		controller.setControllerState(ControllerState.INITIALIZE);
+		controller.trigger();
+
+		controller.getGame().getRoster()[0].setChips(20);
+		controller.getGame().getRoster()[0].setScore(50);
+
+		controller.getGame().getRoster()[1].setChips(20);
+		controller.getGame().getRoster()[1].setScore(10);
+
+		controller.getGame().getRoster()[2].setChips(20);
+		controller.getGame().getRoster()[2].setScore(20);
+
+		controller.getGame().getRoster()[3].setChips(20);
+		controller.getGame().getRoster()[3].setScore(30);
+
+		Player winningPlayer = controller.getGame().getRoster()[0];
+
+		controller.calculateFinalChips(winningPlayer);
+
+		assertEquals(controller.getGame().getRoster()[0].getChips(), 35);
+		assertEquals(controller.getGame().getRoster()[1].getChips(), 15);
+		assertEquals(controller.getGame().getRoster()[2].getChips(), 15);
+		assertEquals(controller.getGame().getRoster()[3].getChips(), 15);
+
+	}
+
+	@Test
+	void test_calculateFinalChips_4_players_5_chip_present_some_zero_score() throws InvalidDieValueException
+	{
+		SkunkController controller = new SkunkController(true, 4);
+		controller.setControllerState(ControllerState.INITIALIZE);
+		controller.trigger();
+
+		controller.getGame().getRoster()[0].setChips(5);
+		controller.getGame().getRoster()[0].setScore(0);
+
+		controller.getGame().getRoster()[1].setChips(5);
+		controller.getGame().getRoster()[1].setScore(10);
+
+		controller.getGame().getRoster()[2].setChips(5);
+		controller.getGame().getRoster()[2].setScore(0);
+
+		controller.getGame().getRoster()[3].setChips(5);
+		controller.getGame().getRoster()[3].setScore(30);
+
+		Player winningPlayer = controller.getGame().getRoster()[3];
+
+		controller.calculateFinalChips(winningPlayer);
+
+		assertEquals(controller.getGame().getRoster()[0].getChips(), 0);
+		assertEquals(controller.getGame().getRoster()[1].getChips(), 0);
+		assertEquals(controller.getGame().getRoster()[2].getChips(), 0);
+		assertEquals(controller.getGame().getRoster()[3].getChips(), 20);
+
+	}
+
+	@Test
+	void test_calculateFinalChips_4_players_3_chip_present_some_zero_score() throws InvalidDieValueException
+	{
+		SkunkController controller = new SkunkController(true, 4);
+		controller.setControllerState(ControllerState.INITIALIZE);
+		controller.trigger();
+
+		controller.getGame().getRoster()[0].setChips(3);
+		controller.getGame().getRoster()[0].setScore(0);
+
+		controller.getGame().getRoster()[1].setChips(5);
+		controller.getGame().getRoster()[1].setScore(10);
+
+		controller.getGame().getRoster()[2].setChips(10);
+		controller.getGame().getRoster()[2].setScore(0);
+
+		controller.getGame().getRoster()[3].setChips(10);
+		controller.getGame().getRoster()[3].setScore(30);
+
+		Player winningPlayer = controller.getGame().getRoster()[3];
+
+		controller.calculateFinalChips(winningPlayer);
+
+		assertEquals(controller.getGame().getRoster()[0].getChips(), 0);
+		assertEquals(controller.getGame().getRoster()[1].getChips(), 0);
+		assertEquals(controller.getGame().getRoster()[2].getChips(), 0);
+		assertEquals(controller.getGame().getRoster()[3].getChips(), 28);
+	}
+
+	@Test
+	void test_calculateFinalChips_4_players_3_chips_no_zero_score() throws InvalidDieValueException
+	{
+		SkunkController controller = new SkunkController(true, 4);
+		controller.setControllerState(ControllerState.INITIALIZE);
+		controller.trigger();
+
+		controller.getGame().getRoster()[0].setChips(3);
+		controller.getGame().getRoster()[0].setScore(10);
+
+		controller.getGame().getRoster()[1].setChips(5);
+		controller.getGame().getRoster()[1].setScore(10);
+
+		controller.getGame().getRoster()[2].setChips(10);
+		controller.getGame().getRoster()[2].setScore(10);
+
+		controller.getGame().getRoster()[3].setChips(10);
+		controller.getGame().getRoster()[3].setScore(30);
+
+		Player winningPlayer = controller.getGame().getRoster()[3];
+
+		controller.calculateFinalChips(winningPlayer);
+
+		assertEquals(controller.getGame().getRoster()[0].getChips(), 0);
+		assertEquals(controller.getGame().getRoster()[1].getChips(), 0);
+		assertEquals(controller.getGame().getRoster()[2].getChips(), 5);
+		assertEquals(controller.getGame().getRoster()[3].getChips(), 23);
+
+	}
 }
