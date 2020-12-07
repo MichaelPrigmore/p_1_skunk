@@ -12,18 +12,21 @@ import myskunk.pl.SkunkUI;
 
 public class SkunkUI
 {
-	private static final int WINNINGSCOREVALUE = 100;
+	private static final int WINNINGSCOREVALUE = 20;
 	SkunkController controller;
 	int numberOfPlayers;
-	Player[] roster;
 
 	public SkunkUI()
 	{
 
 	}
 
-	public SkunkUI(int numberOfPlayers) // Used for testing purposes
+	public SkunkUI(int numberOfPlayers, SkunkController control) // Used for
+																	// testing
+																	// purposes
 	{
+		this.controller = control;
+		Player[] roster;
 		this.numberOfPlayers = numberOfPlayers;
 		roster = new Player[this.numberOfPlayers];
 
@@ -35,10 +38,14 @@ public class SkunkUI
 			roster[i].setName("tester" + i);
 		}
 
+		controller.getGame().setRoster(roster);
+
 	}
 
 	public void beginNewGame()
 	{
+		Player[] roster;
+
 		StdOut.println("Hello skunk players!\n");
 
 		StdOut.println("How many players are there?\n");
@@ -88,6 +95,8 @@ public class SkunkUI
 					+ "player without a score.\n\n"
 					+ "In the event of a tie at the end of the game between one or more players, there is no winner and the house keeps the \"kitty.\"\n");
 		}
+
+		controller.getGame().setRoster(roster);
 
 		setControllerState(ControllerState.INITIALIZE);
 
@@ -367,11 +376,6 @@ public class SkunkUI
 		String decision = yesOrNoChecker();
 
 		return decision;
-	}
-
-	public Player[] getRoster()
-	{
-		return this.roster;
 	}
 
 	public void setController(SkunkController controller)

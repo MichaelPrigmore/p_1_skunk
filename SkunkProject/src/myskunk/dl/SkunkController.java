@@ -46,9 +46,7 @@ public class SkunkController
 	{
 		game = new Game();
 
-		UI = new SkunkUI(numberOfTestPlayers);
-
-		UI.setController(this);
+		UI = new SkunkUI(numberOfTestPlayers, this);
 
 		this.myDice.setIsFairDice(cheatModeOff);
 
@@ -79,7 +77,6 @@ public class SkunkController
 	private void initializeNewGame()
 	{
 
-		game.setRoster(UI.getRoster());
 		whosTurn = UI.getNumberOfPlayers() - 1;
 	}
 
