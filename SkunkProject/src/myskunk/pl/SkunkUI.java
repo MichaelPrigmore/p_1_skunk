@@ -12,7 +12,7 @@ import myskunk.pl.SkunkUI;
 
 public class SkunkUI
 {
-	private static final int WINNINGSCOREVALUE = 20;
+	private static final int WINNINGSCOREVALUE = 100;
 	SkunkController controller;
 	int numberOfPlayers;
 
